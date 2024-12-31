@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Video Downloader - Created by G.W. Gehansa Yomal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #e9eff1;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: auto;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            max-height: 90vh;
+        }
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            color: #4267B2;
+            margin-bottom: 20px;
+        }
+        .description {
+            font-size: 16px;
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border 0.3s ease;
+            margin-bottom: 10px;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: #4267B2;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4267B2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #365899;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #4267B2;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .feature-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .feature-box h3 {
+            color: #4267B2;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .feature-box p {
+            color: #555;
+            font-size: 16px;
+        }
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .message.success {
+            color: green;
+        }
+        .message.error {
+            color: red;
+        }
+        .scrollable-container {
+            max-height: 400px;
+            overflow-y: scroll;
+            padding-right: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Facebook Video Downloader</h1>
+    <p class="description">Enter a Facebook video URL to download your favorite videos quickly and easily.</p>
+
+    <!-- Input Area -->
+    <div class="input-group">
+        <input type="text" id="videoUrl" placeholder="Paste Facebook Video URL" />
+    </div>
+
+    <p>Select Video Quality:</p>
+    <div class="input-group">
+        <select id="videoQuality">
+            <option value="high">High Quality</option>
+            <option value="medium">Medium Quality</option>
+            <option value="low">Low Quality</option>
+        </select>
+    </div>
+
+    <button onclick="downloadVideo()">Download Video</button>
+
+    <!-- Message -->
+    <div id="message" class="message"></div>
+
+    <!-- Features (Scrollable Area) -->
+    <div class="scrollable-container">
+        <div class="feature-box">
+            <h3>Features:</h3>
+            <p><strong>1. Easy to Use:</strong> Simply paste the Facebook video URL and choose the quality to start downloading.</p>
+            <p><strong>2. Fast Processing:</strong> Instant video processing and downloading.</p>
+            <p><strong>3. Safe & Secure:</strong> Your privacy is our priority. No personal data is stored.</p>
+            <p><strong>4. Multiple Quality Options:</strong> Choose between high, medium, or low quality for your video download.</p>
+            <p><strong>5. No Hidden Fees:</strong> The service is completely free to use.</p>
+            <p><strong>6. User Feedback:</strong> We value your feedback. Share your thoughts to improve the service.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Made with <span style="color: red;">❤️</span> by <a href="#">G.W. Gehansa Yomal</a></p>
+    </div>
+</div>
+
+<script>
+    function downloadVideo() {
+        const url = document.getElementById('videoUrl').value;
+        const quality = document.getElementById('videoQuality').value;
+        const message = document.getElementById('message');
+
+        if (!url) {
+            message.textContent = "Please enter a valid URL!";
+            message.classList.remove('success');
+            message.classList.add('error');
+            return;
+        }
+
+        message.textContent = "Processing...";
+
+        // Mocking the process of fetching video download link
+        setTimeout(() => {
+            const videoDownloadLink = url; // Simulating a video download link fetch
+            const videoQuality = quality.charAt(0).toUpperCase() + quality.slice(1); // Capitalize quality option
+
+            if (videoDownloadLink) {
+                message.textContent = `Video ready to download in ${videoQuality} quality!`;
+                message.classList.remove('error');
+                message.classList.add('success');
+                window.location.href = videoDownloadLink; // Redirect to download link
+            } else {
+                message.textContent = "Failed to fetch video. Try again.";
+                message.classList.remove('success');
+                message.classList.add('error');
+            }
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
